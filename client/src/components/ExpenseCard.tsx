@@ -19,8 +19,8 @@ export default function ExpenseCard({
   onEdit,
   onDelete
 }: ExpenseCardProps) {
-  const categoryLabel = CATEGORY_LABELS[expense.category];
-  const categoryColorClass = CATEGORY_COLORS[expense.category];
+  const categoryLabel = expense.category ? CATEGORY_LABELS[expense.category] : null;
+  const categoryColorClass = expense.category ? CATEGORY_COLORS[expense.category] : "";
   
   return (
     <div className="expense-card bg-white border border-gray-200 rounded-lg p-4 shadow-sm transition-all hover:shadow-md">
@@ -28,11 +28,13 @@ export default function ExpenseCard({
         <div>
           <h3 className="font-medium text-gray-800">{expense.description}</h3>
           <div className="text-sm text-gray-500">{formatDate(expense.date)}</div>
-          <div className="mt-1">
-            <Badge variant="outline" className={categoryColorClass}>
-              {categoryLabel}
-            </Badge>
-          </div>
+          {categoryLabel && (
+            <div className="mt-1">
+              <Badge variant="outline" className={categoryColorClass}>
+                {categoryLabel}
+              </Badge>
+            </div>
+          )}
         </div>
         <div className="text-right">
           <div className="text-lg font-semibold text-gray-800">{formatCurrency(expense.amount)}</div>

@@ -3,7 +3,7 @@ export interface Expense {
   description: string;
   amount: number;
   date: string;
-  category: ExpenseCategory;
+  category?: ExpenseCategory;
 }
 
 export type ExpenseCategory = 
@@ -44,5 +44,5 @@ export interface ExpenseFormData {
   description: string;
   amount: number;
   date: string;
-  category: ExpenseCategory;
+  category?: ExpenseCategory;
 }
