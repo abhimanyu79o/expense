@@ -6,8 +6,7 @@ import {
   addExpense, 
   updateExpense, 
   deleteExpense, 
-  getBudgetPercentage,
-  saveExpenses
+  getBudgetPercentage
 } from "@/lib/expenseService";
 import { Expense, SortOrder } from "@/types/expense";
 import ExpenseForm from "@/components/ExpenseForm";
@@ -16,8 +15,6 @@ import ExpenseSummary from "@/components/ExpenseSummary";
 import EditExpenseModal from "@/components/EditExpenseModal";
 import DeleteExpenseModal from "@/components/DeleteExpenseModal";
 import { useToast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/button";
-import { Save } from "lucide-react";
 
 export default function ExpenseTracker() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -107,27 +104,9 @@ export default function ExpenseTracker() {
   // Calculate budget percentage
   const budgetPercentage = getBudgetPercentage(totalAmount);
 
-  // Handle manual save
-  const handleManualSave = () => {
-    saveExpenses(expenses);
-    toast({
-      title: "Expenses saved",
-      description: "All your expenses have been saved to local storage.",
-    });
-  };
-
   return (
     <div className="bg-gray-50">
       <div className="container mx-auto px-4 py-4 max-w-6xl">
-        <div className="flex justify-end mb-6">
-          <Button 
-            onClick={handleManualSave}
-            className="bg-primary-600 hover:bg-primary-700 text-white"
-          >
-            <Save className="mr-2 h-4 w-4" />
-            Save Expenses
-          </Button>
-        </div>
 
         <div className="lg:grid lg:grid-cols-12 lg:gap-8">
           {/* Expense Form Section */}
