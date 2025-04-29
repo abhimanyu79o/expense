@@ -4,7 +4,6 @@ const config: CapacitorConfig = {
   appId: 'com.expensetracker.app',
   appName: 'Expense Tracker',
   webDir: 'dist/public',
-  bundledWebRuntime: false,
   server: {
     androidScheme: 'https'
   },

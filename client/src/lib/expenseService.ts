@@ -1,7 +1,7 @@
 import { Expense, ExpenseFormData, SortOrder } from "@/types/expense";
 
 const STORAGE_KEY = "expenses";
-const BUDGET_AMOUNT = 200; // Default budget amount
+const BUDGET_AMOUNT = 1000000; // Budget amount set to 10 lakh rupees
 
 export function getExpenses(): Expense[] {
   const storedExpenses = localStorage.getItem(STORAGE_KEY);
