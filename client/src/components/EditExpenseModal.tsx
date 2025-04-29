@@ -62,7 +62,12 @@ export default function EditExpenseModal({
     setIsSubmitting(true);
     
     try {
-      onSave(data);
+      // Preserve the category from the original expense
+      const updatedExpense: Expense = {
+        ...data,
+        category: expense.category
+      };
+      onSave(updatedExpense);
     } finally {
       setIsSubmitting(false);
     }
@@ -111,7 +116,7 @@ export default function EditExpenseModal({
                   <FormControl>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <span className="text-gray-500">$</span>
+                        <span className="text-gray-500">₹</span>
                       </div>
                       <Input
                         type="number"

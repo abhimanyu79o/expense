@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bgGradient)" />
+  
+  <!-- Rupee Symbol -->
+  <text font-family="Arial-BoldMT, Arial" font-size="280" font-weight="bold" fill="#FFFFFF" x="156" y="350">
+    ₹
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="384" cy="128" r="24" fill="#ffffff" opacity="0.6" />
+  <circle cx="128" cy="384" r="16" fill="#ffffff" opacity="0.4" />
+  <path d="M400 280 L440 320 L400 360" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7" />
+</svg>
