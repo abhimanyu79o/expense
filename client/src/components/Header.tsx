@@ -6,7 +6,7 @@ export default function Header() {
       <div className="container mx-auto p-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <img src="/assets/logo.svg" alt="App Logo" className="h-10 w-10" />
+            <img src="/icons/expense-icon.svg" alt="App Logo" className="h-10 w-10" />
             <h1 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">
               Expense Tracker
             </h1>

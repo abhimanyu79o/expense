@@ -117,13 +117,9 @@ export default function ExpenseTracker() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <header className="mb-8 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Expense Tracker</h1>
-            <p className="text-gray-600">Track and manage your expenses easily</p>
-          </div>
+    <div className="bg-gray-50">
+      <div className="container mx-auto px-4 py-4 max-w-6xl">
+        <div className="flex justify-end mb-6">
           <Button 
             onClick={handleManualSave}
             className="bg-primary-600 hover:bg-primary-700 text-white"
@@ -131,7 +127,7 @@ export default function ExpenseTracker() {
             <Save className="mr-2 h-4 w-4" />
             Save Expenses
           </Button>
-        </header>
+        </div>
 
         <div className="lg:grid lg:grid-cols-12 lg:gap-8">
           {/* Expense Form Section */}
