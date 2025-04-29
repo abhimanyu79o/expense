@@ -32,16 +32,16 @@ export default function ExpenseList({
   const amountIcon = sortOrder === 'amountDesc' ? <ArrowDownAZ /> : <ArrowUpAZ />;
 
   return (
-    <Card className="bg-white shadow-md mb-6">
+    <Card className="bg-white shadow-md mb-6 border-secondary/20">
       <CardContent className="pt-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-800">Your Expenses</h2>
+          <h2 className="text-xl font-semibold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Your Expenses</h2>
           <div className="flex gap-2">
             <Button 
               variant="ghost" 
               size="sm" 
               onClick={toggleDateSort}
-              className="text-sm text-gray-600 hover:text-primary-600"
+              className="text-sm text-gray-600 hover:text-primary"
             >
               Sort by Date {dateIcon}
             </Button>
@@ -49,7 +49,7 @@ export default function ExpenseList({
               variant="ghost" 
               size="sm" 
               onClick={toggleAmountSort}
-              className="text-sm text-gray-600 hover:text-primary-600"
+              className="text-sm text-gray-600 hover:text-primary"
             >
               Sort by Amount {amountIcon}
             </Button>

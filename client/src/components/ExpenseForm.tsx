@@ -126,7 +126,7 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             
             <Button 
               type="submit" 
-              className="w-full bg-primary-600 hover:bg-primary-700 text-white mt-6"
+              className="w-full bg-primary hover:bg-primary/90 text-white mt-6 font-medium"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Adding..." : "Add Expense"}
