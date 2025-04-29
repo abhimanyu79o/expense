@@ -2,7 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Expense, CATEGORY_LABELS } from "@/types/expense";
+import { Expense } from "@/types/expense";
 import { X } from "lucide-react";
 import {
   Dialog,
@@ -18,13 +18,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -34,18 +27,6 @@ const editExpenseSchema = z.object({
   description: z.string().min(1, "Description is required"),
   amount: z.coerce.number().positive("Amount must be greater than zero"),
   date: z.string().min(1, "Date is required"),
-  category: z.enum([
-    "food",
-    "transportation",
-    "entertainment",
-    "utilities",
-    "shopping",
-    "housing",
-    "healthcare",
-    "other",
-  ] as const, {
-    required_error: "Please select a category",
-  }),
 });
 
 type EditExpenseFormData = z.infer<typeof editExpenseSchema>;
@@ -73,7 +54,6 @@ export default function EditExpenseModal({
       description: expense.description,
       amount: expense.amount,
       date: expense.date,
-      category: expense.category,
     },
   });
 
@@ -156,34 +136,6 @@ export default function EditExpenseModal({
                   <FormControl>
                     <Input type="date" {...field} />
                   </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="category"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
-                        <SelectItem key={value} value={value}>
-                          {label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

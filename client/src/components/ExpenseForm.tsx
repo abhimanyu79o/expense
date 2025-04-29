@@ -13,14 +13,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { CATEGORY_LABELS, ExpenseCategory } from "@/types/expense";
 import { getTodayFormatted } from "@/lib/expenseService";
 
 // Schema for expense form validation
@@ -28,18 +20,6 @@ const expenseSchema = z.object({
   description: z.string().min(1, "Description is required"),
   amount: z.coerce.number().positive("Amount must be greater than zero"),
   date: z.string().min(1, "Date is required"),
-  category: z.enum([
-    "food", 
-    "transportation", 
-    "entertainment", 
-    "utilities", 
-    "shopping", 
-    "housing", 
-    "healthcare", 
-    "other"
-  ] as const, {
-    required_error: "Please select a category",
-  }),
 });
 
 type ExpenseFormData = z.infer<typeof expenseSchema>;
@@ -58,7 +38,6 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
       description: "",
       amount: undefined,
       date: getTodayFormatted(),
-      category: undefined,
     },
   });
 
@@ -72,7 +51,6 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
         description: "",
         amount: undefined,
         date: getTodayFormatted(),
-        category: undefined,
       });
     } finally {
       setIsSubmitting(false);
@@ -112,7 +90,7 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
                   <FormControl>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <span className="text-gray-500">$</span>
+                        <span className="text-gray-500">₹</span>
                       </div>
                       <Input 
                         type="number" 
@@ -141,34 +119,6 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="category"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category</FormLabel>
-                  <Select 
-                    onValueChange={field.onChange} 
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a category" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
-                        <SelectItem key={value} value={value}>
-                          {label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
