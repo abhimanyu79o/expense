@@ -1,66 +1,42 @@
-import { Link } from "wouter";
-import { useLocation } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Save } from "lucide-react";
-import { getExpenses, saveExpenses } from "@/lib/expenseService";
-import { useToast } from "@/hooks/use-toast";
+import { Vote, Shield, Home } from "lucide-react";
 
 export default function Header() {
   const [location] = useLocation();
-  const { toast } = useToast();
-
-  const handleManualSave = () => {
-    const expenses = getExpenses();
-    saveExpenses(expenses);
-    toast({
-      title: "Expenses saved",
-      description: "All your expenses have been saved to local storage.",
-    });
-  };
 
   return (
-    <header className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 text-white shadow-lg">
-      <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <img src="/icons/expense-icon.svg" alt="App Logo" className="h-10 w-10 drop-shadow-md" />
-            <h1 className="text-xl font-bold bg-gradient-to-r from-white to-blue-100 text-transparent bg-clip-text">
-              Expense Tracker
-            </h1>
-          </div>
+    <header className="bg-white shadow-sm border-b">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center space-x-2">
+            <Vote className="w-8 h-8 text-blue-600" />
+            <span className="text-xl font-bold text-gray-800">VoteApp</span>
+          </Link>
           
-          <div className="flex items-center">
-            {location === "/" && (
+          <nav className="flex items-center space-x-4">
+            <Link href="/">
               <Button 
-                onClick={handleManualSave}
-                className="bg-accent hover:bg-accent/90 text-white mr-6"
+                variant={location === "/" ? "default" : "ghost"}
                 size="sm"
+                className="flex items-center space-x-2"
               >
-                <Save className="mr-2 h-4 w-4" />
-                Save Expenses
+                <Home className="w-4 h-4" />
+                <span>Vote</span>
               </Button>
-            )}
+            </Link>
             
-            <nav>
-              <ul className="flex space-x-6">
-                <li>
-                  <Link href="/">
-                    <a className="font-medium hover:text-blue-200 transition-colors">Home</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about">
-                    <a className="font-medium hover:text-blue-200 transition-colors">About</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/settings">
-                    <a className="font-medium hover:text-blue-200 transition-colors">Settings</a>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
+            <Link href="/admin">
+              <Button 
+                variant={location.startsWith("/admin") ? "default" : "ghost"}
+                size="sm"
+                className="flex items-center space-x-2"
+              >
+                <Shield className="w-4 h-4" />
+                <span>Admin</span>
+              </Button>
+            </Link>
+          </nav>
         </div>
       </div>
     </header>

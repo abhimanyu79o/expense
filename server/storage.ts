@@ -43,6 +43,41 @@ export class MemStorage implements IStorage {
     
     // Initialize with default admin
     this.createAdmin({ username: "ADMIN", password: "1234" });
+    
+    // Add sample nominees for demonstration
+    this.initializeSampleNominees();
+  }
+
+  private initializeSampleNominees() {
+    const sampleNominees = [
+      {
+        name: "Alice Johnson",
+        logo: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
+      },
+      {
+        name: "Bob Smith", 
+        logo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+      },
+      {
+        name: "Carol Davis",
+        logo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+      },
+      {
+        name: "David Wilson",
+        logo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+      }
+    ];
+
+    for (const nominee of sampleNominees) {
+      const id = this.currentNomineeId++;
+      const newNominee: Nominee = {
+        ...nominee,
+        id,
+        voteCount: 0,
+        createdAt: new Date().toISOString(),
+      };
+      this.nominees.set(id, newNominee);
+    }
   }
 
   // Nominee operations
